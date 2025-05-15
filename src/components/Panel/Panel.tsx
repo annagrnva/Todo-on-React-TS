@@ -1,6 +1,9 @@
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import Paper from "@mui/material/Paper";
+import styles from "./styles.module.scss";
+import { AddButton } from "../../components";
+import { DeleteButton } from "../../components";
 
 export const Panel = () => {
   const [inputValue, setUnputValue] = useState("");
@@ -8,13 +11,9 @@ export const Panel = () => {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUnputValue(event.target.value);
   };
+
   return (
-    <Box
-      component="form"
-      sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
-      noValidate
-      autoComplete="off"
-    >
+    <Paper elevation={2} className={styles.paper}>
       <TextField
         id="outlined-basic"
         label="todo container"
@@ -22,6 +21,8 @@ export const Panel = () => {
         value={inputValue}
         onChange={onChange}
       />
-    </Box>
+      <AddButton />
+      <DeleteButton />
+    </Paper>
   );
 };
