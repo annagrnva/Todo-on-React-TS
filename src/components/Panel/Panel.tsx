@@ -3,15 +3,20 @@ import { useState } from "react";
 import Paper from "@mui/material/Paper";
 import styles from "./styles.module.scss";
 import { AddButton } from "../../components";
-import { DeleteButton } from "../../components";
+import { ToDoList } from "../../components";
 
 export const Panel = () => {
-  const [inputValue, setUnputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [tasks, setTasks] = useState<string[]>([]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUnputValue(event.target.value);
+    setInputValue(event.target.value);
   };
 
+  const addTask = () => {
+    setTasks([...tasks, inputValue]);
+    setInputValue("");
+  };
   return (
     <Paper elevation={2} className={styles.paper}>
       <TextField
@@ -21,8 +26,8 @@ export const Panel = () => {
         value={inputValue}
         onChange={onChange}
       />
-      <AddButton />
-      <DeleteButton />
+      <AddButton onClick={addTask} />
+      <ToDoList />
     </Paper>
   );
 };

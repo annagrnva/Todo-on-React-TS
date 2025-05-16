@@ -1,8 +1,10 @@
 import Button from "@mui/material/Button";
 
-const onClick = () => {};
+interface AddButtonProps {
+  onClick: () => void;
+}
 
-export const AddButton = () => {
+export const AddButton = ({ onClick }: AddButtonProps) => {
   return (
     <Button variant="outlined" onClick={onClick}>
       Add
