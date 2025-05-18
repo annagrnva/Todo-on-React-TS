@@ -1,21 +1,28 @@
-// import IconButton from "@mui/material/IconButton";
-// import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { DeleteButton } from "../DeleteButton";
 
-type TodoList = {
-  id: string;
-  checked: boolean;
-};
+interface Task {
+  id: number;
+  name: string;
+}
 
-export const ToDoList: React.FC<TodoList> = () => {
-  return TodoList.map((list) => ({ list }));
-
-  //      <div>
-  //     {tasks.map((task, index) => (
-  //       <p key={index}>{task}</p>
-  //     ))}
-
-  //     <IconButton aria-label="delete" size="small">
-  //       <DeleteIcon fontSize="inherit" />
-  //     </IconButton>
-  //   </div>
+interface ToDoListProps {
+  tasks: Task[];
+}
+export const ToDoList = ({ tasks }: ToDoListProps) => {
+  return (
+    <>
+      <div>
+        {tasks.map((task) => (
+          <p key={task.id}>
+            {task.name}
+            <IconButton aria-label="delete" size="small">
+              <DeleteIcon fontSize="inherit" />
+            </IconButton>
+          </p>
+        ))}
+      </div>
+    </>
+  );
 };
