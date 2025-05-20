@@ -18,8 +18,11 @@ export const Panel = () => {
     if (inputValue === "") {
       return;
     }
+
     setInputValue("");
-    setTasks([...tasks, { id: nextId, name: inputValue }]);
+    const newTask = { id: nextId, name: inputValue };
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
     setNextId(nextId + 1);
   };
 
