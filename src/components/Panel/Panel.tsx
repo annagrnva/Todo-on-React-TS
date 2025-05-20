@@ -8,7 +8,7 @@ import { ToDoList } from "../../components";
 export const Panel = () => {
   const [inputValue, setInputValue] = useState("");
   const [tasks, setTasks] = useState<{ id: number; name: string }[]>([]);
-  const [nextId, setNextId] = useState(1);
+  const [nextId, setNextId] = useState(0);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -22,6 +22,11 @@ export const Panel = () => {
     setTasks([...tasks, { id: nextId, name: inputValue }]);
     setNextId(nextId + 1);
   };
+
+  const deleteTask = (num: number) => {
+    setTasks(tasks.filter((task) => task.id !== num));
+  };
+
   return (
     <Paper elevation={2} className={styles.paper}>
       <TextField
@@ -32,7 +37,7 @@ export const Panel = () => {
         onChange={onChange}
       />
       <AddButton onClick={addTask} />
-      <ToDoList tasks={tasks} />
+      <ToDoList tasks={tasks} onDeleteTask={deleteTask} />
     </Paper>
   );
 };

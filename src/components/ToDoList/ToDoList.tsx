@@ -1,6 +1,5 @@
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { DeleteButton } from "../DeleteButton";
 
 interface Task {
   id: number;
@@ -9,15 +8,21 @@ interface Task {
 
 interface ToDoListProps {
   tasks: Task[];
+  onDeleteTask: (id: number) => void;
 }
-export const ToDoList = ({ tasks }: ToDoListProps) => {
+
+export const ToDoList = ({ tasks, onDeleteTask }: ToDoListProps) => {
   return (
     <>
       <div>
         {tasks.map((task) => (
           <p key={task.id}>
             {task.name}
-            <IconButton aria-label="delete" size="small">
+            <IconButton
+              onClick={() => onDeleteTask(task.id)}
+              aria-label="delete"
+              size="small"
+            >
               <DeleteIcon fontSize="inherit" />
             </IconButton>
           </p>
